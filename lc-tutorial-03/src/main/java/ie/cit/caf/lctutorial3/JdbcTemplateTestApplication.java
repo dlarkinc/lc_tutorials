@@ -1,18 +1,16 @@
 package ie.cit.caf.lctutorial3;
 
-import ie.cit.caf.domain.Artist;
-import ie.cit.caf.domain.Movement;
-import ie.cit.caf.rowmapper.ArtistRowMapper;
-import ie.cit.caf.rowmapper.MovementRowMapper;
+import ie.cit.caf.lctutorial3.dao.ArtistDao;
+import ie.cit.caf.lctutorial3.domain.Artist;
+import ie.cit.caf.lctutorial3.domain.Movement;
+import ie.cit.caf.lctutorial3.rowmapper.ArtistRowMapper;
+import ie.cit.caf.lctutorial3.rowmapper.MovementRowMapper;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,7 +21,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
 @SpringBootApplication
-public class LcTutorial03Application implements CommandLineRunner {
+public class JdbcTemplateTestApplication implements CommandLineRunner {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
@@ -70,14 +68,24 @@ public class LcTutorial03Application implements CommandLineRunner {
 	}
 	
 	public void query03a() {
-		// Query for a single column value
+		// Query for specific column values
 		
-		System.out.println("\nQuery 3 (Print artist with id 1 - uses RowMapper)\n------------------");
+		System.out.println("\nQuery 3a (Specfic columns)\n------------------");
 		
+		// Old version (now deprecated)
 		String sql = "SELECT count(*) FROM artists";
 		int artistCount = jdbcTemplate.queryForInt(sql);
-		
 		System.out.printf("Number of artists: %d\n", artistCount);
+		
+		// New way
+		sql = "SELECT count(*) FROM movements";
+		int movementCount = jdbcTemplate.queryForObject(sql, Integer.class);
+		System.out.printf("Number of movements: %d\n", movementCount);
+		
+		// Getting a map of values
+		sql = "SELECT fullName, gender FROM artists WHERE id = 1";
+		Map<String, Object> map = jdbcTemplate.queryForMap(sql);
+		System.out.printf("Name: %s, Gender: %s\n", map.get("fullName"), map.get("gender"));
 	}
 
 	public void query04() {
@@ -108,7 +116,7 @@ public class LcTutorial03Application implements CommandLineRunner {
 		String sql = "SELECT a.id as artistid, a.fullName, a.gender, m.id as movementid, m.name " + 
 				"FROM artists a, movements m, artist_movements am " + 
 				"WHERE m.id = am.movement_id AND a.id = am.artist_id AND am.artist_id = ?";
-		Artist artist = (Artist)jdbcTemplate.query(sql, new Object[] { 1 }, 
+		Artist artist = jdbcTemplate.query(sql, new Object[] { 1 }, 
 				new ResultSetExtractor<Artist>() {
 
 					@Override
@@ -140,18 +148,49 @@ public class LcTutorial03Application implements CommandLineRunner {
 		System.out.println(artist.toString());
 	}
 	
+
+	@Autowired
+	ArtistDao artistDao;
+	
+	public void query06() {
+		// Using an injected DAO object
+		
+		System.out.println("\nQuery 6 (Using an injected DAO)\n------------------");
+
+		// Get artist #1
+		Artist artist = artistDao.getById(1);
+		System.out.println("Before: " + artist.toString());
+		
+		// Artist went through gender reassignment surgery
+		artist.setGender(changeGender(artist.getGender()));
+		artistDao.save(artist);
+		
+		// Get the artist again to ensure change was saved
+		artist = artistDao.getById(1);
+		System.out.println("After: " + artist.toString());
+	}
+	
+	private String changeGender(String gender) {
+		if (gender.equals("male")) {
+			return "female";
+		} else {
+			return "male";
+		}
+	}
+	
 	@Override
 	public void run(String... arg0) throws Exception {
 		query01();  // Using a Map for the result set
 		query02();  // Query for a List of objects
 		query03();  // Query for a single object
-		query03a(); // Query for a single column value
+		query03a(); // Query for specific column values
 		query04();  // Inefficient way to query many-to-many
 		query05();  // ResultSetExtrator for more efficient many-to-many
+		query06();  // Using a DAO class
 	}
 	
     public static void main(String[] args) {
-        SpringApplication.run(LcTutorial03Application.class, args);
+        SpringApplication.run(JdbcTemplateTestApplication.class, args);
     }
 
 }

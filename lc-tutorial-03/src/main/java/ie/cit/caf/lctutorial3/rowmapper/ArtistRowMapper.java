@@ -1,7 +1,7 @@
-package ie.cit.caf.rowmapper;
+package ie.cit.caf.lctutorial3.rowmapper;
 
-import ie.cit.caf.domain.Artist;
-import ie.cit.caf.domain.Movement;
+import ie.cit.caf.lctutorial3.domain.Artist;
+import ie.cit.caf.lctutorial3.domain.Movement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

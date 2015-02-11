@@ -1,7 +1,12 @@
-package ie.cit.caf.domain;
+package ie.cit.caf.lctutorial3.domain;
 
 import java.util.List;
-import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 public class Artist extends Person {
 
@@ -82,7 +87,7 @@ public class Artist extends Person {
 		for (Movement m : movements) {
 			out += m.toString() + ",";
 		}
-		out += "], " + movements + ", role=" + role + ", birth=" + birth + "]";
+		out += "], " + ", role=" + role + ", birth=" + birth + "]";
 		return out;
 	}
 

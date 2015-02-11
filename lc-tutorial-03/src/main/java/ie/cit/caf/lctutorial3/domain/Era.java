@@ -1,4 +1,4 @@
-package ie.cit.caf.domain;
+package ie.cit.caf.lctutorial3.domain;
 
 public class Era {
 
