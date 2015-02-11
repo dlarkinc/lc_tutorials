@@ -35,7 +35,7 @@ public class JpaRepositoryTestApplication implements CommandLineRunner {
 	}
 	
 	public void query02a() {
-		System.out.println("\nQuery 2 (Print male artists called Ackling, Roger)\n------------------");
+		System.out.println("\nQuery 2a (Print male artists called Ackling, Roger)\n------------------");
 		
 		List<Artist> artists = artistRepository.findByFullNameAndGender("Ackling, Roger", "male");
 		for (Artist artist : artists) {
@@ -43,7 +43,13 @@ public class JpaRepositoryTestApplication implements CommandLineRunner {
 		}
 		
 	}
-
+	
+	public void query02b() {
+		System.out.println("\nQuery 2b (Print count of male artists)\n------------------");
+		int count = artistRepository.countByGender("male");
+		System.out.println("Number of male artists: " + count);
+	}
+	
 	public void query03() {
 		System.out.println("\nQuery 3 (Print artists with e in their name, ignoring case)\n------------------");
 		
@@ -97,15 +103,25 @@ public class JpaRepositoryTestApplication implements CommandLineRunner {
 		}
 	}
 	
+	public void query07() {
+		System.out.println("\nQuery 7 (Get artists by id using native SQL)\n------------------");
+		
+		Artist artist = artistRepository.findByIdNative(2);
+		
+		System.out.println(artist.toString());
+	}
+	
 	@Override
 	public void run(String... arg0) throws Exception {
 		query01();  // Get artist using JPA repo
 		query02();  // Get artists by single value
 		query02a(); // Get artists by multiple columns
+		query02b(); // Get count of artists
 		query03();  // Get artists by pattern matching on name
 		query04();  // Get artist, make a change and use JPA repo to save it
 		query05();  // Get artists by automatic subquery/join (in movement 2)
 		query06();  // Get artists by custom query with join to movement "Conceptual Art"
+		query07();  // Get artist using native SQL
 	}
 	
     public static void main(String[] args) {

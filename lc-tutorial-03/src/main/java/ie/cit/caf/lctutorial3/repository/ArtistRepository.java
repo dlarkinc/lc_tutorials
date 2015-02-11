@@ -21,4 +21,9 @@ public interface ArtistRepository extends CrudRepository<Artist, Integer>{
 	
 	@Query("SELECT a FROM Artist a JOIN a.movements m WHERE m.name = :name")
 	public List<Artist> findByMovementsName(@Param("name") String name);
+	
+	public int countByGender(String gender);
+	
+	@Query(value="Select * FROM artists WHERE id = :id", nativeQuery = true)
+	public Artist findByIdNative(@Param("id") int id);
 }
