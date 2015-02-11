@@ -3,7 +3,7 @@ package ie.cit.caf.lctutorial3;
 import java.util.List;
 
 import ie.cit.caf.lctutorial3.entity.Artist;
-import ie.cit.caf.lctutorial3.repository.ArtisteRepository;
+import ie.cit.caf.lctutorial3.repository.ArtistRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 public class JpaRepositoryTestApplication implements CommandLineRunner {
 
 	@Autowired
-	ArtisteRepository artistRepository;
+	ArtistRepository artistRepository;
 	
 	public void query01() {
 		System.out.println("\nQuery 1 (Print artist with id 1)\n------------------");

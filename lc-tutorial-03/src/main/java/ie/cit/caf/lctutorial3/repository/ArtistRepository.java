@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface ArtisteRepository extends CrudRepository<Artist, Integer>{
+public interface ArtistRepository extends CrudRepository<Artist, Integer>{
 	
 	public List<Artist> findByGender(String gender); // SELECT * FROM artists WHERE gender = 'xxxxx'
 	public List<Artist> findByFullNameAndGender(String string, String string2);
