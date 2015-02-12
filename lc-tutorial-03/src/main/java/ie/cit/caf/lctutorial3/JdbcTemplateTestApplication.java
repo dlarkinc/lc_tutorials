@@ -38,7 +38,7 @@ public class JdbcTemplateTestApplication implements CommandLineRunner {
 		for (Map<String, Object> row : resultSet) {
 			System.out.println("Name: " + row.get("fullName"));
 			System.out.println("ID: " + row.get("id"));
-			System.out.println("Gender: " + row.get("gender"));
+			System.out.println("Gender: " + row.get("gender") + "\n");
 		}
 	}
 	
