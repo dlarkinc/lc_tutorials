@@ -10,12 +10,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class JdbcArtistRepsotitory implements ArtistRepository {
+public class JdbcArtistRepository implements ArtistRepository {
 
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	public JdbcArtistRepsotitory(JdbcTemplate jdbcTemplate) {
+	public JdbcArtistRepository(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	

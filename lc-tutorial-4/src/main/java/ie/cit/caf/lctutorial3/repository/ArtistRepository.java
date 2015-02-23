@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface ArtistRepository {
 
-	public Artist get(int id);
+	Artist get(int id);
 	
-	public void save(Artist artist);
+	void save(Artist artist);
 
-	public void remove(Artist artist);
+	void remove(Artist artist);
 	
-	public List<Artist> findAll();
+	List<Artist> findAll();
 	
 }
