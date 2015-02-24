@@ -11,31 +11,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class ArtistServiceImpl implements ArtistService {
 
-	@Autowired
 	ArtistRepository artistRepository;
 	
+	@Autowired
+	public ArtistServiceImpl(ArtistRepository artistRepository) {
+		this.artistRepository = artistRepository;
+	}
+
 	@Override
-	public void add(Artist artist) {
+	public void save(Artist artist) {
 		artistRepository.save(artist);
 	}
 
 	@Override
-	public void update(Artist artist) {
-		artistRepository.save(artist);
-	}
-
-	@Override
-	public Artist getById(int id) {
+	public Artist get(int id) {
 		return artistRepository.get(id);
 	}
 
 	@Override
-	public List<Artist> getAllArtists() {
+	public List<Artist> findAll() {
 		return artistRepository.findAll();
 	}
 
 	@Override
-	public void delete(Artist artist) {
+	public void remove(Artist artist) {
 		artistRepository.remove(artist);
 	}
 

@@ -11,11 +11,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
-@SpringBootApplication
+@Import(DefaultConfig.class)
 public class JdbcTemplateTestApplication implements CommandLineRunner {
 
 	@Autowired
@@ -87,11 +87,11 @@ public class JdbcTemplateTestApplication implements CommandLineRunner {
 	}
 	
 	void serviceExampleWithAop() {
-		Artist a1 = artistService.getById(3);
+		Artist a1 = artistService.get(3);
 		a1.setGender(toggleGender(a1.getGender()));
-		artistService.update(a1);
+		artistService.save(a1);
 		
-		System.out.println(a1.toString());
+		System.out.println("\nUpdated via service:\n" + a1.toString());
 	}
 	
 	@Override

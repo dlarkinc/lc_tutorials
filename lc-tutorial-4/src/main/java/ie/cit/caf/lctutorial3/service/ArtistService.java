@@ -6,13 +6,11 @@ import ie.cit.caf.lctutorial3.domain.Artist;
 
 public interface ArtistService {
 
-	void add(Artist artist);
+	void save(Artist artist);
 	
-	void update(Artist artist);
+	Artist get(int id);
 	
-	Artist getById(int id);
+	void remove(Artist artist);
 	
-	void delete(Artist artist);
-	
-	List<Artist> getAllArtists();
+	List<Artist> findAll();
 }

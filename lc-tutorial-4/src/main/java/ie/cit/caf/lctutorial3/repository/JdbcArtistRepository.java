@@ -21,7 +21,7 @@ public class JdbcArtistRepository implements ArtistRepository {
 	
 	public Artist get(int id) {
 		String sql = "SELECT * FROM artists WHERE id = ?";
-		Artist artist = jdbcTemplate.queryForObject(sql, new Object[] { 1 }, new ArtistRowMapper());
+		Artist artist = jdbcTemplate.queryForObject(sql, new Object[] { id }, new ArtistRowMapper());
 		return artist;
 	}
 	
