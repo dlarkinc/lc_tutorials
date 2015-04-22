@@ -1,5 +1,5 @@
 spring:
-  profiles.active: default
+  profiles.active: test
 ---
 spring:
   profiles: default

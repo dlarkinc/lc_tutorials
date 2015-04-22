@@ -86,7 +86,7 @@ public class JdbcTemplateTestApplication implements CommandLineRunner {
 
 	}
 	
-	void serviceExampleWithAop() {
+	void serviceExample() {
 		Artist a1 = artistService.get(3);
 		a1.setGender(toggleGender(a1.getGender()));
 		artistService.save(a1);
@@ -99,7 +99,7 @@ public class JdbcTemplateTestApplication implements CommandLineRunner {
 
 		repositoryExample();
 
-		serviceExampleWithAop();
+		serviceExample();
 	}
 	
 	public static void main(String[] args) {

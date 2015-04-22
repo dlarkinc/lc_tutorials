@@ -13,7 +13,7 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ArtistRepositoryImplTests {
+public class ArtistServiceImplTests {
 
 	private ArtistService artistService;
 	private ArtistRepository repoMock;
@@ -38,6 +38,8 @@ public class ArtistRepositoryImplTests {
 		artists.add(b);
 		
 		when(repoMock.get(1)).thenReturn(a);
+		when(repoMock.get(2)).thenReturn(b);
+	
 		when(repoMock.findAll()).thenReturn(artists);
 		
 		artistService = new ArtistServiceImpl(repoMock);

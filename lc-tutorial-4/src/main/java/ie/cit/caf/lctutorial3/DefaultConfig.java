@@ -8,5 +8,11 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 @ComponentScan
 public class DefaultConfig {
-
+//
+//	@Bean
+//	SomeClass createSomeBean() {
+//		SomeClass sc = SomeClass();
+//		sc.set
+//		return sc;
+//	}
 }
