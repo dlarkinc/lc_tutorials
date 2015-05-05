@@ -1,8 +1,5 @@
 package ie.cit.caf.neo4j;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ie.cit.caf.neo4j.node.Artist;
 import ie.cit.caf.neo4j.node.Movement;
 import ie.cit.caf.neo4j.repository.ArtistRepository;
@@ -28,7 +25,7 @@ public class LcTutorialNeo4jApplication extends Neo4jConfiguration implements Co
 
 	@Bean(destroyMethod = "shutdown")
     GraphDatabaseService graphDatabaseService() {
-    	return new GraphDatabaseFactory().newEmbeddedDatabase("C:\\Users\\larkin.cunningham\\Documents\\Neo4j\\caf2015.graph");
+    	return new GraphDatabaseFactory().newEmbeddedDatabase("P:\\Neo4j\\caf2015.graph");
     }
     
     @Autowired
