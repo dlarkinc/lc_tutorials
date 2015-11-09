@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: Thymeleaf
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: larkin.cunningham
+Implementation-Vendor-Id: ie.cit.larkin
+Build-Jdk: 1.8.0_31
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
