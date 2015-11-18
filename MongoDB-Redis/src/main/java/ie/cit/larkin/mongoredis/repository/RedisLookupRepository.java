@@ -1,0 +1,29 @@
+package ie.cit.larkin.mongoredis.repository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Repository;
+
+/**
+ * Basic implementation of Redis key-value add and get operations.
+ * 
+ * @author Larkin.Cunningham
+ *
+ */
+@Repository
+public class RedisLookupRepository implements ILookupRepository {
+	
+	@Autowired
+	private RedisTemplate<String, String> redisTemplate;
+	
+	@Override
+	public void add(String key, String value) {
+		redisTemplate.boundValueOps(key).append(value);
+	}
+
+	@Override
+	public String get(String key) {
+		return redisTemplate.opsForValue().get(key);
+	}
+
+}
