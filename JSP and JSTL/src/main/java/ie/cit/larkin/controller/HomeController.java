@@ -47,7 +47,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/applicant", method = RequestMethod.GET)
 	public String addApplicant(Model model) {
-		model.addAttribute("applicantForm", new ApplicantForm());
+		model.addAttribute("applicant", new ApplicantForm());
 		return "form";
 	}
 
