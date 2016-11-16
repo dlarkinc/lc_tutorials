@@ -1,9 +1,8 @@
-package ie.cit.caf.lctutorial3.entity;
-
-import ie.cit.caf.lctutorial3.entity.Movement;
+package ie.cit.larkin.thymeleaf.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name="artists")
@@ -23,16 +25,17 @@ public class Artist {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	@NotNull
+	@Length(min=4)
 	private String gender;
 
-	@Column(name="fullName")
-
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 	@JoinTable(name="artist_movements",
 			joinColumns={@JoinColumn(name="artist_id", referencedColumnName="id")},
 			inverseJoinColumns={@JoinColumn(name="movement_id", referencedColumnName="id")})
 	public List<Movement> movements;
 	
+	@Column(name="fullName")
 	private String fullName;
 	
 	public int getId() {

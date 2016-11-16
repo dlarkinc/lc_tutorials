@@ -1,12 +1,12 @@
-package ie.cit.caf.lctutorial3.repository;
+package ie.cit.larkin.thymeleaf.repository;
 
 import java.util.List;
-
-import ie.cit.caf.lctutorial3.entity.Artist;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+
+import ie.cit.larkin.thymeleaf.entity.Artist;
 
 public interface ArtistRepository extends CrudRepository<Artist, Integer>{
 	

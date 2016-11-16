@@ -1,4 +1,4 @@
-package ie.cit.caf.lctutorial3.entity;
+package ie.cit.larkin.thymeleaf.entity;
 
 import java.util.List;
 
@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name="movements")
@@ -17,6 +20,8 @@ public class Movement {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	@NotNull
+	@Length(min=4)
 	private String name;
 
 	@ManyToMany(mappedBy="movements")

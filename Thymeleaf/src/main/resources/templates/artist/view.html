@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Artist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body> 
+<h1 th:text="#{artist.view.title}">Default Title</h1>
+
+<p>Name: <span th:text="${artist.fullName}">Artist Name</span></p>
+<p>Gender: <span th:text="${artist.gender}">Gender</span></p>
+<div  th:unless="${#lists.isEmpty(artist.movements)}">
+	<p>Movements:</p>
+	<table>
+		<tr th:each="movement: ${artist.movements}">
+			<td th:text="${movement.name}">Name</td>
+		</tr>
+	</table>
+</div>
+
+</body>
+</html>
