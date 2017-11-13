@@ -1,10 +1,11 @@
 Manifest-Version: 1.0
-Implementation-Title: MongoDB-Redis
+Implementation-Title: demo
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: Larkin.Cunningham
-Implementation-Vendor-Id: ie.cit.larkin
+Implementation-Vendor-Id: org.test
 Build-Jdk: 1.8.0_91
-Implementation-URL: http://projects.spring.io/spring-boot/mongo-redis/
+Implementation-URL: http://projects.spring.io/spring-boot/demo/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
+Main-Class: ie.cit.caf.redis.LcTutorialRedisApplication
 
